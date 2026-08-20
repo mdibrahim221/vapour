@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium Vape Showcase</title>
+    <script>
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          var customFetch = originalFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() { return customFetch; },
+            set: function(val) { 
+              console.warn("window.fetch assignment intercepted safely");
+              customFetch = val; 
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          try {
+            var proto = Object.getPrototypeOf(window);
+            if (proto) {
+              var desc = Object.getOwnPropertyDescriptor(proto, 'fetch');
+              if (desc && desc.configurable) {
+                Object.defineProperty(proto, 'fetch', {
+                  get: function() { return customFetch; },
+                  set: function(val) {
+                    console.warn("prototype.fetch assignment intercepted safely");
+                    customFetch = val;
+                  },
+                  configurable: true,
+                  enumerable: true
+                });
+              }
+            }
+          } catch (e2) {
+            console.error("Could not configure fetch defensively:", e2);
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

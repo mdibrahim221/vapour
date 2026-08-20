@@ -1,0 +1,6 @@
+{
+  "name": "Premium Vape Showcase",
+  "description": "A highly interactive, modern, and light-themed premium vape showcase website featuring smooth scroll animations, an interactive hardware configurator, and an elegant product gallery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
